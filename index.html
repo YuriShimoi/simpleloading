@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>SVG loader</title>
+
+        <style>
+            :root {
+                --stroke-width: 12;
+                --stroke-type: round;
+                --stroke-color: #ff0000;
+                --stroke-light: 4px;
+                --stroke-duration: 1.5s;
+            }
+            html,body {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: 600;
+                background: #111;
+            }
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .blur {
+                filter: blur(var(--stroke-light)) hue-rotate(10deg) brightness(1.5);
+            }
+            .effect {
+                stroke-linecap: var(--stroke-type);
+                stroke-linejoin: var(--stroke-type);
+                stroke-width: var(--stroke-width);
+                stroke: var(--stroke-color);
+            }
+            .triangle {
+                opacity: 1;
+                stroke-dasharray: 64.8 128.8;
+                stroke-dashoffset: 129.2;
+                animation: triangle var(--stroke-duration) cubic-bezier(0.3,0.5,0.5, 0.7) infinite;
+            }
+            .hexagon {
+                opacity: 0;
+                stroke-dasharray: 64.8 64.4;
+                stroke-dashoffset: 129.6;
+                animation: hexagon var(--stroke-duration) linear infinite;
+            }
+
+            @keyframes triangle {
+                0%    { opacity: 1; stroke-dashoffset: -64.4; stroke: #ff0000; }
+                16.5% { stroke: #ffff00; }
+                33%   { stroke: #00ff00; }
+                49%   { opacity: 1; stroke-dashoffset: 129.2; }
+                49.5% { stroke: #00ffff; }
+                50%   { opacity: 0; }
+                66%   { stroke: #0000ff; }
+                82.5% { stroke: #ff00ff; }
+                100%  { opacity: 0; stroke: #ff0000; }
+            }
+            @keyframes hexagon {
+                0%    { opacity: 0; stroke: #ff0000; }
+                16.5% { stroke: #ffff00; }
+                33%   { stroke: #00ff00; }
+                49%   { opacity: 0; }
+                49.5% { stroke: #00ffff; }
+                50%   { opacity: 1; stroke-dashoffset: 0.6; }
+                66%   { stroke: #0000ff; }
+                82.5% { stroke: #ff00ff; }
+                100%  { opacity: 1; stroke-dashoffset: 129.6; stroke: #ff0000; }
+            }
+        </style>
+    </head>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-20 -20 240 240">
+            <polygon class="effect triangle blur" fill="none" stroke="#000" stroke-width="1" points="100,16.2 3.2,183.8 196.8,183.8" />
+            <polygon class="effect hexagon blur" fill="none" stroke="#000" stroke-width="1" points="67.7,72 35.5,127.9 67.7,183.8 132.3,183.8 164.5,127.9 132.3,72" />
+            <polygon style="--stroke-light:2px" class="effect triangle blur" fill="none" stroke="#000" stroke-width="1" points="100,16.2 3.2,183.8 196.8,183.8" />
+            <polygon style="--stroke-light:2px" class="effect hexagon blur" fill="none" stroke="#000" stroke-width="1" points="67.7,72 35.5,127.9 67.7,183.8 132.3,183.8 164.5,127.9 132.3,72" />
+
+            <polygon class="effect triangle" fill="none" stroke="#000" stroke-width="1" points="100,16.2 3.2,183.8 196.8,183.8" />
+            <polygon class="effect hexagon" fill="none" stroke="#000" stroke-width="1" points="67.7,72 35.5,127.9 67.7,183.8 132.3,183.8 164.5,127.9 132.3,72" />
+        </svg>
+    </body>
+</html>
